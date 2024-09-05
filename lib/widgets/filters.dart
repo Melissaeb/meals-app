@@ -50,17 +50,16 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
       //   },
       // ),
       body: PopScope(
-        onPopInvokedWithResult:
-
-        //     (popped) {
-        //   if(popped) return;
-        //   ref.read(filtersProvider.notifier).setFilters({
-        //         Filter.glutenFree: _glutenFreeFilterSet,
-        //         Filter.lactoseFree: _lactoseFreeFilterSet,
-        //         Filter.vegetarian: _vegetarianFilterSet,
-        //         Filter.vegan: _veganFilterSet,
-        //       });
-        // },
+        canPop: false,
+        onPopInvokedWithResult: (bool didPop, dynamic result) {
+          if (didPop) return;
+          ref.read(filtersProvider.notifier).setFilters({
+            Filter.glutenFree: _glutenFreeFilterSet,
+            Filter.lactoseFree: _lactoseFreeFilterSet,
+            Filter.vegetarian: _vegetarianFilterSet,
+            Filter.vegan: _veganFilterSet,
+          });
+        },
         child: Column(
           children: [
             SwitchListTile(
